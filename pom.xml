@@ -5,8 +5,77 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.nukkit</groupId>
-    <artifactId>nukkit</artifactId>
+    <artifactId>nukkit-aggregator</artifactId>
     <version>2.0-SNAPSHOT</version>
+    <modules>
+        <module>nukkit-bedrock</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <developers>
+        <developer>
+            <name>Lin Mulan</name>
+            <email>admin@snake1999.com</email>
+            <url>http://snake1999.com</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+
+    <issueManagement>
+        <system>Github Issue</system>
+        <url>http://github.com/snake1999/nukkit-2.0</url>
+    </issueManagement>
+
+    <properties>
+        <kotlin.version>1.2.31</kotlin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
