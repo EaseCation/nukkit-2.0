@@ -24,23 +24,23 @@ repo代码由libmc、libspp、libticker、blackbird等部分组成，每个部�
 | blackbird-ui | 面向用户，实现图形化用户接口，便于使用 | 筹划中 |
 
 ## 登录流程
-C代表客户端，B代表Browser，S代表Server
+C代表客户端，B代表Browser，S代表Server。事实上表格内顺序无关的消息是多线程处理的。
 
-| 处理 | 内容 |
-|------|------|
-| C->B 多种协议 | 我要登录play.nukkit.io:19132 |
-| B | 读取设置，发现play.nukkit.io:19132对应spp://localhost |
-| B | 访问缓存，尝试找spp://localhost/index.toml，比如说没找到 |
-| B->S spp协议 | 我要最新的index.toml |
-| S->B spp协议 | 拿着 |
-| B | 读取index.toml，发现需要从spp://localhost/static/example_world下载一个地图 |
-| B | 访问缓存，比如说，发现没有这个地图 |
-| B->S spp协议 | 我要地图spp://localhost/static/example_world |
-| S->B spp协议 | 打开管道，开始传输视界内地图区块 |
-| B->C 多种协议 | 打开管道传输地图，同时B缓存地图 |
-| B->C 多种协议 | 传输完成，游戏开始 |
-| B | 读取index.toml，发现在on_join时需要发送一个提示信息 |
-| B->C 多种协议 | 发送提示信息：欢迎进入游戏！|
+| 时间顺序 | 处理 | 内容 |
+|------|--|------|
+| 1 | C->B 多种协议 | 我要登录play.nukkit.io:19132 |
+| 2 | B | 读取设置，发现play.nukkit.io:19132对应spp://localhost |
+| 3 | B | 访问缓存，尝试找spp://localhost/index.toml，比如说没找到 |
+| 4 | B->S spp协议 | 我要最新的index.toml |
+| 5 | S->B spp协议 | 拿着 |
+| 6 | B | 读取index.toml，发现需要从spp://localhost/static/example_world下载一个地图 |
+| 7 | B | 访问缓存，比如说，发现没有这个地图 |
+| 8 | B->S spp协议 | 我要地图spp://localhost/static/example_world |
+| 9 | S->B spp协议 | 打开管道，开始传输视界内地图区块 |
+| 9 | B->C 多种协议 | 打开管道传输地图，同时B缓存地图 |
+| 10 | B->C 多种协议 | 传输完成，游戏开始 |
+| 10 | B | 读取index.toml，发现在on_join时需要发送一个提示信息 |
+| 11 | B->C 多种协议 | 发送提示信息：欢迎进入游戏！|
 
 # 开发进程
 近期正在筹划，2018-06-10开始代码工作，预计2018-09结束非游戏功能的架构开发
