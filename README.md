@@ -18,6 +18,7 @@ repo代码由libmc、libspp、libticker、blackbird等部分组成，每个部�
 | libmc-net | 网络层协议，包括mc-bedrock和mc-java及其多版本实现 | 筹划中 | 
 | libspp | 服务器组网协议、server与browser通讯协议 | 筹划中 |
 | libticker | 小游戏房间系统和定时器 | 筹划中 |
+| blackbird-core | 基本的client-browser-server架构代码 | 筹划中 |
 | blackbird-browser | 一个nukkit browser实现，实现libspp客户端 | 筹划中 |
 | blackbird-server | 一个nukkit server实现，打包了libmc，实现libspp服务端，不包含插件接口 | 筹划中 |
 | blackbird-app | 打包server和browser，实现基础listener逻辑，包含插件接口 | 筹划中 |
