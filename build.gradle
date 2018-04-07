@@ -1,0 +1,31 @@
+allprojects {
+    group = 'io.nukkit'
+    version = '2.0'
+}
+
+buildscript {
+    ext.kotlin_version = '1.2.31'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+
+subprojects {
+    apply plugin: 'kotlin'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        // https://mvnrepository.com/artifact/junit/junit
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+}
