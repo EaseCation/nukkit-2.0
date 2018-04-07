@@ -68,5 +68,13 @@ fun launch() {
 }
 ```
 
+# 贡献指南
+
+## 环境准备
+
+你需要安装Java、Gradle以及适合开发Kotlin的IDE。
+你可以在 https://gradle.org/install/ 安装Gradle。
+我们建议你使用 IntelliJ IDEA 作为IDE。
+
 # 开发进程
 近期正在筹划，2018-06-10开始代码工作，预计2018-09结束非游戏功能的架构开发
