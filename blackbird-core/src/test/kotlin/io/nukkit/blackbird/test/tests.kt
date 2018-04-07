@@ -1,7 +1,7 @@
 package io.nukkit.blackbird.test
 
-import org.junit.Test as test
-import org.junit.Assert.*
+import org.junit.jupiter.api.Test as test
+import org.junit.jupiter.api.Assertions.*
 
 class TestSource {
     @test fun itWorks() {
