@@ -37,9 +37,9 @@ repo代码由libmc、libspp、libticker、blackbird等部分组成，每个部�
 | libmc-world-gen | 世界生成器，包括mc-bedrock和mc-java的normal，包括超平坦生成器 | 筹划中 |
 | libmc-world-fmt | 世界的二进制转储格式，包括anvil、mcregion等 | 筹划中 |
 | libmc-net | 网络层协议，包括mc-bedrock和mc-java及其多版本实现 | 筹划中 | 
-| libspp | 服务器组网协议、server与browser通讯协议 | 筹划中 |
+| [libspp](https://github.com/EaseCation/nukkit-2.0/tree/2.0/libspp) | 服务器组网协议、server与browser通讯协议 | 开发中 |
 | libticker | 小游戏房间系统和定时器 | 筹划中 |
-| blackbird-core | 基本的client-browser-server架构代码 | 筹划中 |
+| [blackbird-core](https://github.com/EaseCation/nukkit-2.0/tree/2.0/blackbird-core) | 基本的client-browser-server架构代码 | 开发中 |
 | blackbird-impl | 一个nukkit实现，包括：1、browser实现，实现libspp客户端；2、server实现，打包了libmc，实现libspp服务端，不包含插件接口 | 筹划中 |
 | blackbird-app | 打包impl，实现基础listener逻辑，包含插件接口 | 筹划中 |
 | blackbird-ui | 面向用户，实现图形化用户接口，便于使用 | 筹划中 |
