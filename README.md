@@ -8,21 +8,25 @@ nukkit 2.0分为browser和server两部分。browser将不同的客户端协议�
 ## 登录流程
 C代表客户端，B代表Browser，S代表Server。
 
+### 预处理
+| 时间顺序 | 处理 | 内容 |
+|---------|-----|------|
+| 1 | B->S spp协议 | 我要所有的静态页面和地图 |
+| 2 | S->B spp协议 | 拿着 |
+
+### 开始登录
 | 时间顺序 | 处理 | 内容 |
 |---------|-----|------|
 | 1 | C->B 多种协议 | 我要登录play.nukkit.io:19132 |
 | 2 | B | 读取设置，发现play.nukkit.io:19132对应spp://localhost |
-| 3 | B | 访问缓存，尝试找spp://localhost/index.toml，比如说没找到 |
-| 4 | B->S spp协议 | 我要最新的index.toml |
-| 5 | S->B spp协议 | 拿着 |
-| 6 | B | 读取index.toml，发现需要从spp://localhost/static/example_world下载一个地图 |
-| 7 | B | 访问缓存，比如说，发现没有这个地图 |
-| 8 | B->S spp协议 | 我要地图spp://localhost/static/example_world |
-| 9 | S->B spp协议 | 打开管道，开始传输视界内地图区块 |
-| 9 | B->C 多种协议 | 打开管道传输地图，同时B缓存地图 |
-| 10 | B->C 多种协议 | 传输完成，游戏开始 |
-| 10 | B | 读取index.toml，发现在on_join时需要发送一个提示信息 |
-| 11 | B->C 多种协议 | 发送提示信息：欢迎进入游戏！|
+| 3 | B | 访问缓存，找spp://localhost/index.toml，比如说没找到 |
+| 4 | B | 读取index.toml，发现需要连接到动态地图spp://localhost/static/example_world |
+| 5 | B->S spp协议 | 我要连接到地图spp://localhost/static/example_world |
+| 6 | S->B spp协议 | 打开管道，开始传输视界内地图区块 |
+| 6 | B->C 多种协议 | 打开管道传输地图，同时B缓存地图 |
+| 7 | B->C 多种协议 | 传输完成，游戏开始 |
+| 7 | B | 读取index.toml，发现在on_join时需要发送一个提示信息 |
+| 8 | B->C 多种协议 | 发送提示信息：欢迎进入游戏！|
 
 事实上表格内顺序无关的消息是并发处理的。
 

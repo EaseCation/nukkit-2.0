@@ -8,7 +8,7 @@ fun init() {
     URL.setURLStreamHandlerFactory(SppURLStreamHandlerFactory())
 }
 
-class SppURLStreamHandlerFactory : URLStreamHandlerFactory {
+private class SppURLStreamHandlerFactory : URLStreamHandlerFactory {
 
     override fun createURLStreamHandler(protocol: String?): URLStreamHandler? {
         return if(protocol.equals("spp")) SppURLStreamHandler()
@@ -16,13 +16,13 @@ class SppURLStreamHandlerFactory : URLStreamHandlerFactory {
     }
 }
 
-class SppURLStreamHandler : URLStreamHandler() {
+private class SppURLStreamHandler : URLStreamHandler() {
     override fun openConnection(u: URL?): URLConnection {
         return SppURLConnection(u)
     }
 }
 
-class SppURLConnection(url: URL?) : URLConnection(url) {
+private class SppURLConnection(url: URL?) : URLConnection(url) {
 
     private var connection:Socket? = null
 
