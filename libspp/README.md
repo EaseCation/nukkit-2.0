@@ -30,8 +30,6 @@
 |------|-----|------|-----|
 | 0x10 | B->S | map[url] hash_data （已有的静态资源的哈希） | 请求刷新所有静态资源 |
 | 0x10 | S->B | map[url] data | 刷新静态资源[1] |
-| 0x11 | B->S | client_id, url | 访问页面 |
-| 0x12 | S->B | client_id, url | 重定向 |
 | 0x20 | B->S | pos（位置）, int（视距） | 按视距请求刷新地图 |
 | 0x21 | S->B | map[pos] block_data | 小范围修改地图 |
 | 0x22 | S->B | [chunks] | 大范围修改地图或发送初始地图 |
