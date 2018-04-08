@@ -19,7 +19,7 @@ C代表客户端，B代表Browser，S代表Server。
 |---------|-----|------|
 | 1 | C->B 多种协议 | 我要登录play.nukkit.io:19132 |
 | 2 | B | 读取设置，发现play.nukkit.io:19132对应spp://localhost |
-| 3 | B | 访问缓存，找spp://localhost/index.toml，比如说没找到 |
+| 3 | B | 访问缓存，找spp://localhost/index.toml |
 | 4 | B | 读取index.toml，发现需要连接到动态地图spp://localhost/static/example_world |
 | 5 | B->S spp协议 | 我要连接到地图spp://localhost/static/example_world |
 | 6 | S->B spp协议 | 打开管道，开始传输视界内地图区块 |
