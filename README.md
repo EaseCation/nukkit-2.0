@@ -78,11 +78,12 @@ C代表客户端，B代表Browser，S代表Server。
 ##### Ss：游戏crystal_wars，地图undersea_world
 地址为`spp://static.play.nukkit.io/mg/crystal_wars/undersea_world.toml`。
 ```toml
-spp.world="/world/undersea_world"
-spp.connect="spp://gate.play.nukkit.io/mg/crystal_wars?room_id=${room_id}"
+[spp]
+world = "/world/undersea_world"
+connect = "spp://gate.play.nukkit.io/mg/crystal_wars?room_id=${room_id}"
 
 [spp.effects] # 可以设置世界玩家effect
-water_breathing="inf" 
+water_breathing = "inf" 
 ```
 
 ### 抓包记录
