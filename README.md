@@ -53,54 +53,9 @@ C代表客户端，B代表Browser，S代表Server。
 
 [1] 由browser计算玩家视距，决定是否发送
 
-## 小游戏服务器架构设计（半成品）
+## 小游戏服务器架构设计
 
-客户端`C`使用bedrock协议，进入一个小游戏服务器群组`{S}`，该群组在外部的地址为，比如说，play.nukkit.io:19132。群组中服务器可分配如下：
-
-| 编号   | 域名（可做cdn动态解析）                 | 功能                           |
-| ---- | ----------------------------- | ---------------------------- |
-| `Sg` | spp://gate.play.nukkit.io/    | 入口服务器，负责查询玩家上次所在服务器，比如在某个游戏内 |
-| `Ss` | spp://static.play.nukkit.io/  | 静态资源服务器                      |
-| `Sm` | spp://gate.play.nukkit.io/mg/ | 游戏逻辑处理服务器，下属多个分页面            |
-| `S1` | spp://s1.play.nukkit.io/      | 具体的服务器地址，这里只举一个S1为例          |
-
-### 页面布置
-
-#### 入口服务器Sg与Sm
-
-地址为`spp://gate.play.nukkit.io/`。根目录开一个spp Server应用，负责转发玩家。
-
-在下方开设一个`spp://gate.play.nukkit.io/mg/`内有小游戏逻辑若干。
-
-#### 静态资源服务器Ss
-地址为`spp://static.play.nukkit.io/`。
-
-##### Ss：游戏crystal_wars，地图undersea_world
-地址为`spp://static.play.nukkit.io/mg/crystal_wars/undersea_world.toml`。
-```toml
-[spp]
-world = "/world/undersea_world"
-connect = "spp://gate.play.nukkit.io/mg/crystal_wars?room_id=${room_id}"
-
-[spp.effects] # 可以设置世界玩家effect
-water_breathing = "inf" 
-```
-
-### 抓包记录
-
-| 时间顺序 | 方向      | 协议      | 内容                                       |
-| ---- | ------- | ------- | ---------------------------------------- |
-| 1    | C->B    | bedrock | 客户端C登录服务器play.nukkit.io:19132            |
-| 2    | B->Sg   | spp     | 客户端C登录服务器群组                              |
-| 3    | Sg->B   | spp     | 查询到客户端C上次在服务器玩游戏crystal_wars，房间号是12345，地图为undersea_world，服务器为s1，返回以下toml内容：`spp.location="spp://static.play.nukkit.io/crystal_wars/undersea_world.toml?room_id=12345"` |
-| 4    | B(查询缓存) | -       | 访问缓存中`spp://static.play.nukkit.io/crystal_wars/undersea_world.toml`页面 |
-| 5    | B->Ss   | spp     | 下载并缓存地图undersea_world                    |
-| 6    | Ss->B   | spp     | 你要的地图                                    |
-| 5    | B->Sm   | spp     | 连接到`spp://gate.play.nukkit.io/mg/crystal_wars/undersea_world.toml?room_id=12345`。 |
-| 6    | Sm->B   | spp     | 转发到S1，`spp://s1.play.nukkit.io/mg/crystal_wars/undersea_world.toml?room_id=12345`。 |
-| 7    | B->S1   | spp     | 连接到S1                                    |
-| 8    | S1->B   | spp     | 连接完成。以feature形式发送信息，开始加载地图，加载完开始游戏       |
-| 9    | B->C    | bedrock | 传输地图，开始游戏                                |
+此处应有ppt，编写中
 
 ## repo代码组成
 repo代码由libmc、libspp、libticker、blackbird等部分组成，每个部分又分为不同的模块。具体部署如下：
